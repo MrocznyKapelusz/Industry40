@@ -78,20 +78,20 @@ def generatePermutation(n:int, h:int, c:int) -> Vector:
 
 
 
-def main():
-    with open('data/PL.csv', newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
-        # for row in spamreader:
-        #     print(', '.join(row))
-        data = list(spamreader)
-        print(str(data))
-    n = 12  # number of cities
-    h = 7   # hub's id 
-    c = 4   # number of cars
+# def main():
+#     with open('data/PL.csv', newline='') as csvfile:
+#         spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
+#         # for row in spamreader:
+#         #     print(', '.join(row))
+#         data = list(spamreader)
+#         print(str(data))
+#     n = 12  # number of cities
+#     h = 7   # hub's id 
+#     c = 4   # number of cars
 
-    permutation = generatePermutation(n, h, c)
-    print(permutation)
+#     permutation = generatePermutation(n, h, c)
+#     print(permutation)
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
