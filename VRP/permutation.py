@@ -1,6 +1,6 @@
 from typing import List # to use type aliasing
 import csv
-from random import randint
+import random
 from collections import Counter # to count distinct objects in a list
 import time
 
@@ -17,7 +17,7 @@ Vector = List[int]
 def generatePermutation(n:int, h:int, c:int) -> Vector:
     """This function generates random permutation for given starting (and ending) city (aka HUB)
 
-    Right now it visits every city once and uses from 1 to maximum cars.
+    Right now it visits either every city once and uses from 1 to maximum cars or visits not all cities and uses not all cars.
     Some cars may have "empty" rides
 
     Args:
@@ -36,7 +36,8 @@ def generatePermutation(n:int, h:int, c:int) -> Vector:
     ############################
     # config params
     # everyCarIsUsed = True
-    everyCityIsVisited = True
+    # everyCityIsVisited = True
+    everyCityIsVisited = bool(random.getrandbits(1))
     #############################
 
     # counts distinct objects in a list
@@ -53,7 +54,7 @@ def generatePermutation(n:int, h:int, c:int) -> Vector:
     #now use every car (HARDCODED)
     if everyCityIsVisited:
         while countDistinct(visitedCities) < n:
-            randNum = randint(0, n-1)
+            randNum = random.randint(0, n-1)
             # print(f"Current rand: {randNum}, Current list: {perm}")
             
             # is the city a hub?
@@ -74,8 +75,31 @@ def generatePermutation(n:int, h:int, c:int) -> Vector:
                 else:
                     continue
         perm.append(h)
-    return perm
+    else :
+        while countDistinct(visitedCities) < random.randint(0,n):
+            randNum = random.randint(0, n-1)
+            # print(f"Current rand: {randNum}, Current list: {perm}")
+            
+            # is the city a hub?
+            if randNum == h:
+                if noOfUsedCars == c:
+                    continue
+                else:
+                    perm.append(randNum)
+                    noOfUsedCars+=1
+                    continue
+            # selected city is not a hub
+            else:
+                # city not yet visited
+                if randNum not in visitedCities:
+                    perm.append(randNum)
+                    visitedCities.append(randNum)
+                # city already visited
+                else:
+                    continue
+        perm.append(h)
 
+    return perm
 
 
 def main():
