@@ -85,7 +85,7 @@ def main():
         #     print(', '.join(row))
         data = list(spamreader)
         print(str(data))
-    n = 12  # number of cities
+    n = 97  # number of cities
     h = 7   # hub's id 
     c = 4   # number of cars
 
