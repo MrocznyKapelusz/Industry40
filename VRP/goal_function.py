@@ -1,5 +1,4 @@
 import permutation as perm
-import csv
 from typing import List # to use type aliasing
 
 # type alias
