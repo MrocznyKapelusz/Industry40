@@ -1,7 +1,18 @@
 import csv
 
+class City():
+    def __init__(self, postalCode, name, longitude, latitude):
+        self.postalCode = postalCode
+        self.name = name
+        self.longitude = longitude
+        self.latitude = latitude
+
+    def __repr__(self):
+        return repr('City ' + self.name)
+
+
 class DataStructure():
-    
+
     def __init__(self, sourceFile:str):
         n = 0
         unit = ''
@@ -18,6 +29,7 @@ class DataStructure():
         self.n = int(n)     # number of cities (int)
         self.unit = unit    # unit (str)
         self.neighborhoodMatrix = []    # macierz sąsiedztwa
+        self.cities = []    # list of City objects
 
         # here it is a list of list of strings such as "118,031"
         for i in range(self.n): # 0..(n-1)
@@ -27,16 +39,11 @@ class DataStructure():
         for row in range(self.n):
             self.neighborhoodMatrix[row][:] = map(lambda x: float(x.replace(',','.')), self.neighborhoodMatrix[row][:])
 
-        # print(f"res: {list(res)}")
-        # print(f"type(res): {type(res)}")
-        
+        # read all cities
+        for c in range (self.n,2*self.n):
+            # print(f"[0]: " + data[c][0] + " [1]: " + data[c][1] + " [2]: " + data[c][2] + " [3]: " + data[c][3])
+            city = City(data[c][0], data[c][1], float(data[c][2].replace(',','.')), float(data[c][3].replace(',','.')))
+            self.cities.append(city)
 
-
-
-
-
-    def show(self):
-        a = self.neighborhoodMatrix[24][23]
-        print(f"showing : {a}")
-        print(f"showing type : {type(a)}")
-
+        # for city in self.cities:
+        #     print(city)
