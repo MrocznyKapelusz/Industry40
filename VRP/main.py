@@ -13,14 +13,14 @@ def main():
 
     # read data
     data = oa.DataStructure('PL.csv')
-    data.show()
 
 
 
-    # permutation = perm.generatePermutation(n, h, c)
-    # print(f"Proponowana permutacja: {permutation}")
-    # result = gf.goalFunction('PL.csv',permutation)
-    # print(f"Koszt proponowanego rozwiązania: {result[0]} {result[1]}")
+    permutation = perm.generatePermutation(data.n, h, c)
+    print(f"Proponowana permutacja: {permutation}")
+    # result = gf.goalFunction('PL.csv', permutation)
+    result = gf.goalFunction(data, permutation)
+    print(f"Koszt proponowanego rozwiązania: {result[0]} {result[1]}")
     # plt.draw(permutation, mapFileName)
 
 if __name__ == "__main__":
