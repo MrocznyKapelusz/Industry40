@@ -5,7 +5,7 @@ import plot_on_map as plt
 
 def main():
     n = 7  # number of cities
-    h = 0   # hub's id 
+    h = 0   # hub's id
     c = 2   # number of cars
 
     # where to save the map
@@ -14,14 +14,11 @@ def main():
     # read data
     data = oa.DataStructure('PL.csv')
 
-
-
     permutation = perm.generatePermutation(data.n, h, c)
     print(f"Proponowana permutacja: {permutation}")
-    # result = gf.goalFunction('PL.csv', permutation)
     result = gf.goalFunction(data, permutation)
     print(f"Koszt proponowanego rozwiązania: {result[0]} {result[1]}")
-    # plt.draw(permutation, mapFileName)
+    plt.draw(data, permutation, mapFileName)
 
 if __name__ == "__main__":
     main()

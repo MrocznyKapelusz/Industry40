@@ -1,11 +1,11 @@
 import csv
 
 class City():
-    def __init__(self, postalCode, name, longitude, latitude):
+    def __init__(self, postalCode, name, latitude, longitude):
         self.postalCode = postalCode
         self.name = name
-        self.longitude = longitude
-        self.latitude = latitude
+        self.latitude = latitude    # najpierw jest latitude = szerokość
+        self.longitude = longitude  # druga jest longitude = długość
 
     def __repr__(self):
         return repr('City ' + self.name)
