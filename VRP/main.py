@@ -22,9 +22,10 @@ def main():
     # plt.draw(data, permutation, mapFileName)
 
     """LAB2"""
-    basicGreedyPermutation = alg.basicGreedyVRP(data, hub, c)
-    print(basicGreedyPermutation)
-    plt.draw(data, basicGreedyPermutation, mapFileName)
+    for hub in range(0,5):
+        basicGreedyPermutation = alg.basicGreedyVRP(data, hub, c)
+        print(f"Final Permutation: {basicGreedyPermutation}")
+        plt.draw(data, basicGreedyPermutation, mapFileName)
 
 if __name__ == "__main__":
     main()
