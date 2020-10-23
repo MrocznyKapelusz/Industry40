@@ -22,7 +22,7 @@ def main():
     # plt.draw(data, permutation, mapFileName)
 
     """LAB2"""
-    alg.greedyVRP(data)
+    alg.basicGreedyVRP(data)
 
 if __name__ == "__main__":
     main()
