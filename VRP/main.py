@@ -5,7 +5,7 @@ import plot_on_map as plt
 
 def main():
     n = 7  # number of cities
-    h = 0   # hub's id
+    h = 1   # hub's id
     c = 2   # number of cars
 
     # where to save the map
