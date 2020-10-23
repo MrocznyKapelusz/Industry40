@@ -5,7 +5,7 @@ import plot_on_map as plt
 import algorithms as alg
 
 def main():
-    h = 1   # hub's id
+    hub = 1   # hub's id
     c = 2   # number of cars
 
     # where to save the map
@@ -15,14 +15,16 @@ def main():
     data = oa.DataStructure('PL.csv')
 
     """LAB1"""
-    # permutation = perm.generatePermutation(data.n, h, c)
+    # permutation = perm.generatePermutation(data.n, hub, c)
     # print(f"Proponowana permutacja: {permutation}")
     # result = gf.goalFunction(data, permutation)
     # print(f"Koszt proponowanego rozwiązania: {result[0]} {result[1]}")
     # plt.draw(data, permutation, mapFileName)
 
     """LAB2"""
-    alg.basicGreedyVRP(data)
+    basicGreedyPermutation = alg.basicGreedyVRP(data, hub, c)
+    print(basicGreedyPermutation)
+    plt.draw(data, basicGreedyPermutation, mapFileName)
 
 if __name__ == "__main__":
     main()

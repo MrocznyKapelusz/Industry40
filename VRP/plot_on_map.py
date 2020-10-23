@@ -24,6 +24,7 @@ def draw(data:DataStructure, permutation: Vector, filename: str):
     lati = []   # szerokość
     longi = []  # długość
 
+
     for city in permutation:
         lati.append(data.cities[city].latitude)
         longi.append(data.cities[city].longitude)

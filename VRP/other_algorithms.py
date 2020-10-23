@@ -1,14 +1,20 @@
 import csv
+from typing import List # to use type aliasing
+
+# type alias
+Vector = List[int]
 
 class City():
-    def __init__(self, postalCode, name, latitude, longitude):
+    def __init__(self, postalCode, name, latitude, longitude, id):
         self.postalCode = postalCode
         self.name = name
         self.latitude = latitude    # najpierw jest latitude = szerokość
         self.longitude = longitude  # druga jest longitude = długość
+        self.id = id
 
     def __repr__(self):
-        return repr('City ' + self.name)
+        # return repr('City ' + self.name)
+        return repr('City no. ' + str(self.id) + ' ' + self.name)
 
 
 class DataStructure():
@@ -42,8 +48,8 @@ class DataStructure():
         # read all cities
         for c in range (self.n,2*self.n):
             # print(f"[0]: " + data[c][0] + " [1]: " + data[c][1] + " [2]: " + data[c][2] + " [3]: " + data[c][3])
-            city = City(data[c][0], data[c][1], float(data[c][2].replace(',','.')), float(data[c][3].replace(',','.')))
+            city = City(data[c][0], data[c][1], float(data[c][2].replace(',','.')), float(data[c][3].replace(',','.')), c-self.n)
             self.cities.append(city)
 
-        # for city in self.cities:
-        #     print(city)
+        for city in self.cities:
+            print(city)
