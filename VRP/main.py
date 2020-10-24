@@ -22,7 +22,7 @@ def main():
     # plt.draw(data, permutation, mapFileName)
 
     """LAB2"""
-    for hub in range(0,5):
+    for hub in range(0,1):
         basicGreedyPermutation = alg.basicGreedyVRP(data, hub, c)
         print(f"Final Permutation: {basicGreedyPermutation}")
         plt.draw(data, basicGreedyPermutation, mapFileName)

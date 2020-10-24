@@ -3,14 +3,11 @@ from other_algorithms import DataStructure, Vector
 
 def basicGreedyVRP(data: DataStructure, hub:int, c:int) -> Vector:
     """This is basic greedy Vehicle Route Problem algorithm.
-
     It starts with furthest city from the hub and comes back by choosing locally closest city to the chosen previously.
-
     Args:
         data (DataStructure):   read data
         hub (int):              hub's id
         c (int):                number of cars
-
     Returns:
         perm (Vector): Generated permutation as a List[int]
     """
