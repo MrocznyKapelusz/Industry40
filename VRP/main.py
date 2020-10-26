@@ -28,10 +28,10 @@ def main():
     """LAB2"""
     results=[]
     for hub in range(0,25):
-        # basicGreedyPermutation = alg.basicGreedyVRP(data, hub, c)
+        # basicGreedyPermutation = alg.greedyVRP(data, hub, c)
         # print(f"Final Permutation for hub {hub}: {basicGreedyPermutation}")
 
-        advancedGreedyPermutation = alg.advancedGreedyVRP(data,hub,cars)
+        advancedGreedyPermutation = alg.greedyCVRP(data,hub,cars)
         print(f"Final Permutation for hub {data.cities[hub]}: {advancedGreedyPermutation}")
 
         # plt.draw(data, basicGreedyPermutation, mapFileName, sourceName)

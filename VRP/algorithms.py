@@ -1,7 +1,7 @@
 from other_algorithms import DataStructure, Vector, Cars
 
 
-def basicGreedyVRP_old(data: DataStructure, hub:int, c:int) -> Vector:
+def greedyVRP_old(data: DataStructure, hub:int, c:int) -> Vector:
     """This is basic greedy Vehicle Route Problem algorithm.
     It starts with furthest city from the hub and comes back by choosing locally closest city to the chosen previously.
     Args:
@@ -78,7 +78,7 @@ def basicGreedyVRP_old(data: DataStructure, hub:int, c:int) -> Vector:
 
 
 
-def basicGreedyVRP(data: DataStructure, hub:int, c:int) -> Vector:
+def greedyVRP(data: DataStructure, hub:int, c:int) -> Vector:
     """This is basic greedy Vehicle Route Problem algorithm.
     It starts with furthest city from the hub and comes back by choosing locally closest city to the chosen previously.
     Args:
@@ -153,7 +153,7 @@ def basicGreedyVRP(data: DataStructure, hub:int, c:int) -> Vector:
 
 
 
-def advancedGreedyVRP(data: DataStructure, hub:int, c:Cars) -> Vector:
+def greedyCVRP(data: DataStructure, hub:int, c:Cars) -> Vector:
     """This is an advanced greedy Vehicle Route Problem algorithm.
     It starts with furthest city from the hub and comes back by choosing locally closest city to the chosen previously,
     and checking if the cargo fits in the car. If the cargo does not fit, the car is not full.
