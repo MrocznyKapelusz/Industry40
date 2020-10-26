@@ -32,14 +32,14 @@ def main():
         # print(f"Final Permutation for hub {hub}: {basicGreedyPermutation}")
 
         advancedGreedyPermutation = alg.advancedGreedyVRP(data,hub,cars)
-        print(f"Final Permutation for hub {hub}: {advancedGreedyPermutation}")
+        print(f"Final Permutation for hub {data.cities[hub]}: {advancedGreedyPermutation}")
 
         # plt.draw(data, basicGreedyPermutation, mapFileName, sourceName)
         result = gf.goalFunction(data, advancedGreedyPermutation)
         results.append(result)
-        print(f"Koszt proponowanego rozwiązania dla hub:{hub} : {result[0]} {result[1]}")
+        print(f"Koszt proponowanego rozwiązania dla hub:{data.cities[hub]} : {result[0]} {result[1]}")
 
-    print(f"Optymalne ułożenie hub: {results.index(min(results))}, rozwiąwiązanie wynosi wtedy: {min(results)[0]} {min(results)[1]}")
+    print(f"Optymalne położenie hub: {data.cities[results.index(min(results))]}, rozwiąwiązanie wynosi wtedy: {min(results)[0]} {min(results)[1]}")
     
 
 if __name__ == "__main__":
