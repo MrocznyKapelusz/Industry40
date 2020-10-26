@@ -4,16 +4,19 @@ import goal_function as gf
 import plot_on_map as plt
 import algorithms as alg
 
+
 def main():
     hub = 1   # hub's id
     c = 5   # number of cars
+    cars = oa.Cars(2,5) # configure the car fleet
 
     # where to save the map
     mapFileName = "generatedMaps/map.html"
 
     # read data
-    sourceName = 'US.csv'
-    data = oa.DataStructure(sourceName)
+    citiesSourceName = 'PL.csv'
+    tasksSourceName = 'PLdata.csv'
+    data = oa.DataStructure(citiesSourceName,tasksSourceName)
 
     """LAB1"""
     # permutation = perm.generatePermutation(data.n, hub, c)
@@ -23,10 +26,21 @@ def main():
     # plt.draw(data, permutation, mapFileName)
 
     """LAB2"""
-    for hub in range(0,1):
-        basicGreedyPermutation = alg.basicGreedyVRP(data, hub, c)
-        print(f"Final Permutation: {basicGreedyPermutation}")
-        plt.draw(data, basicGreedyPermutation, mapFileName, sourceName)
+    results=[]
+    for hub in range(0,25):
+        # basicGreedyPermutation = alg.basicGreedyVRP(data, hub, c)
+        # print(f"Final Permutation for hub {hub}: {basicGreedyPermutation}")
+
+        advancedGreedyPermutation = alg.advancedGreedyVRP(data,hub,cars)
+        print(f"Final Permutation for hub {hub}: {advancedGreedyPermutation}")
+
+        # plt.draw(data, basicGreedyPermutation, mapFileName, sourceName)
+        result = gf.goalFunction(data, advancedGreedyPermutation)
+        results.append(result)
+        print(f"Koszt proponowanego rozwiązania dla hub:{hub} : {result[0]} {result[1]}")
+
+    print(f"Optymalne ułożenie hub: {results.index(min(results))}, rozwiąwiązanie wynosi wtedy: {min(results)[0]} {min(results)[1]}")
+    
 
 if __name__ == "__main__":
     main()
