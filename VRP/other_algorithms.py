@@ -1,5 +1,8 @@
 import csv
 from typing import List # to use type aliasing
+import pathlib
+BASEDIR=pathlib.Path().absolute()
+
 
 # type alias
 Vector = List[int]
@@ -17,29 +20,40 @@ class City():
         return repr('City no. ' + str(self.id) + ' ' + self.name)
 
 
-class DataStructure():
+class CargoTask():
+    def __init__(self,city,length,weight):
+        self.city=city
+        self.size=length
+        self.weight=weight
+    def __repr__(self):
+        return repr('CargoTask no. '+str(self.city)+' '+str(self.size)+' '+str(self.weight))
 
-    def __init__(self, sourceFile:str):
+class DataStructure():    
+
+    def __init__(self,sourceFileCities,sourceFileTasks=None):
         n = 0
         unit = ''
-        with open('data/' + sourceFile, newline='') as csvfile:
+        with open(str(BASEDIR)+'/VRP/data/' + sourceFileCities, newline='') as csvfile:
             spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
-            data = list(spamreader)
+            dataCities = list(spamreader)
             # Save number of cities and units for later (might be useful)
-            n=data[0][0]
-            unit=data[1][0]
+            n=dataCities[0][0]
+            unit=dataCities[1][0]
             # Delete 2 first rows
-            data.pop(0)
-            data.pop(0)
+            dataCities.pop(0)
+            dataCities.pop(0)
+
+        
 
         self.n = int(n)     # number of cities (int)
         self.unit = unit    # unit (str)
         self.neighborhoodMatrix = []    # macierz sąsiedztwa
         self.cities = []    # list of City objects
+        
 
         # here it is a list of list of strings such as "118,031"
         for i in range(self.n): # 0..(n-1)
-            self.neighborhoodMatrix.append(data[i])
+            self.neighborhoodMatrix.append(dataCities[i])
 
         # here it is translated to a list of list of floats such as 118.031
         for row in range(self.n):
@@ -47,9 +61,50 @@ class DataStructure():
 
         # read all cities
         for c in range (self.n,2*self.n):
-            # print(f"[0]: " + data[c][0] + " [1]: " + data[c][1] + " [2]: " + data[c][2] + " [3]: " + data[c][3])
-            city = City(data[c][0], data[c][1], float(data[c][2].replace(',','.')), float(data[c][3].replace(',','.')), c-self.n)
+            # print(f"[0]: " + dataCities[c][0] + " [1]: " + dataCities[c][1] + " [2]: " + dataCities[c][2] + " [3]: " + dataCities[c][3])
+            city = City(dataCities[c][0], dataCities[c][1], float(dataCities[c][2].replace(',','.')), float(dataCities[c][3].replace(',','.')), c-self.n)
             self.cities.append(city)
 
-        for city in self.cities:
-            print(city)
+
+        if(sourceFileTasks is not None):
+            self.tasks=[]      # list of CargoTask objects
+
+            with open(str(BASEDIR)+'/VRP/data/' + sourceFileTasks, newline='') as csvfile:
+                spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
+                dataTasks = list(spamreader)
+                num_of_tasks=dataTasks[0][0]
+                dataTasks.pop(0)
+            
+            # read all tasks
+            for task in range(len(dataTasks)):
+                cargoTask=CargoTask(int(dataTasks[task][0])-1,float(dataTasks[task][1].replace(',','.')),float(dataTasks[task][2]))
+                self.tasks.append(cargoTask)
+
+        # for city in self.cities:
+        #     print(city)
+
+        # for task in self.tasks:
+        #     print(task)
+
+class Car():
+    def __init__(self, size):
+        # BIG car
+        if(size=='b'): 
+            self.size=16.6
+            self.capacity=24000
+        # SMALL car
+        elif(size=='s'):
+            self.size=7.8
+            self.capacity=8000
+
+class Cars():
+    """
+    This class creates and holds a list of all available cars.
+    """
+    cars=[]
+    def __init__(self, b:int,s:int):
+        self.size=b+s
+        for car in range(b):
+            self.cars.append(Car('b'))
+        for car in range(s):
+            self.cars.append(Car('s'))
