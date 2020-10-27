@@ -6,13 +6,13 @@ import algorithms as alg
 
 def main():
     hub = 1   # hub's id
-    c = 5   # number of cars
+    c = 50   # number of cars
 
     # where to save the map
     mapFileName = "generatedMaps/map.html"
 
     # read data
-    sourceName = 'US.csv'
+    sourceName = 'PL.csv'
     data = oa.DataStructure(sourceName)
 
     """LAB1"""
@@ -23,7 +23,7 @@ def main():
     # plt.draw(data, permutation, mapFileName)
 
     """LAB2"""
-    for hub in range(0,1):
+    for hub in range(1,2):
         basicGreedyPermutation = alg.basicGreedyVRP(data, hub, c)
         print(f"Final Permutation: {basicGreedyPermutation}")
         plt.draw(data, basicGreedyPermutation, mapFileName, sourceName)
