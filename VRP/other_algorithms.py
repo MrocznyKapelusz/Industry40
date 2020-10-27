@@ -1,8 +1,9 @@
 import csv
 from typing import List # to use type aliasing
 import pathlib
-BASEDIR=pathlib.Path().absolute()
-
+import os
+BASEDIR=os.path.dirname(__file__)
+print(os.path.dirname(__file__))
 
 # type alias
 Vector = List[int]
@@ -33,7 +34,8 @@ class DataStructure():
     def __init__(self,sourceFileCities,sourceFileTasks=None):
         n = 0
         unit = ''
-        with open(str(BASEDIR)+'/VRP/data/' + sourceFileCities, newline='') as csvfile:
+        
+        with open(str(BASEDIR)+'/data/' + sourceFileCities, newline='') as csvfile:
             spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
             dataCities = list(spamreader)
             # Save number of cities and units for later (might be useful)
@@ -69,7 +71,7 @@ class DataStructure():
         if(sourceFileTasks is not None):
             self.tasks=[]      # list of CargoTask objects
 
-            with open(str(BASEDIR)+'/VRP/data/' + sourceFileTasks, newline='') as csvfile:
+            with open(str(BASEDIR)+'/data/' + sourceFileTasks, newline='') as csvfile:
                 spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
                 dataTasks = list(spamreader)
                 num_of_tasks=dataTasks[0][0]
