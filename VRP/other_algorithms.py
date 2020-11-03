@@ -3,7 +3,7 @@ from typing import List # to use type aliasing
 import pathlib
 import os
 BASEDIR=os.path.dirname(__file__)
-print(os.path.dirname(__file__))
+# print(os.path.dirname(__file__))
 
 # type alias
 Vector = List[int]
