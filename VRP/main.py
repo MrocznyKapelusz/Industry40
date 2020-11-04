@@ -51,17 +51,17 @@ def main():
     # simulated annealing
     # tabu search
     """LAB3"""
-    init_perm = perm.generatePermutation(data.n, hub, c, True)
-    initRes = gf.goalFunction(data, init_perm)
-    print(f"Initial permutation: {init_perm}.\nCost: {initRes[0]} {initRes[1]}.")
-    print('-'*25)
-    ts.tabu_search(data, hub, c, init_perm = init_perm, limit=100, cadence=7)
+    # init_perm = perm.generatePermutation(data.n, hub, c, True)
+    # initRes = gf.goalFunction(data, init_perm)
+    # print(f"Initial permutation: {init_perm}.\nCost: {initRes[0]} {initRes[1]}.")
+    # print('-'*25)
+    # ts.tabu_search(data, hub, c, init_perm = init_perm, limit=100, cadence=7)
 
-    # basicGreedyPermutation = alg.greedyVRP(data, hub, c)
-    # print(f"Basic perm: {basicGreedyPermutation} of cost: {gf.goalFunction(data, basicGreedyPermutation)}")
-    # results=[]
-    # simAnnealPermutation=sa.sim_anneal(data,basicGreedyPermutation,100,10000,results)
-    # print(f"SimAnneal perm: {simAnnealPermutation} of cost: {gf.goalFunction(data, simAnnealPermutation)}")
+    basicGreedyPermutation = alg.greedyVRP(data, hub, c)
+    print(f"Basic perm: {basicGreedyPermutation} of cost: {gf.goalFunction(data, basicGreedyPermutation)}")
+    results=[]
+    simAnnealPermutation=sa.sim_anneal(data,basicGreedyPermutation,100,10000,results)
+    print(f"SimAnneal perm: {simAnnealPermutation} of cost: {gf.goalFunction(data, simAnnealPermutation)}")
     # print(len(results))
     # print(results[-1])
     # plt.plot(range(len(simAnnealPermutation)),simAnnealPermutation)

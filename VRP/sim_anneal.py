@@ -27,8 +27,8 @@ def sim_anneal(data:DataStructure,permutation:Vector,endTemp:int,startTemp:int,r
     while currentTemp > endTemp:
         # print(f"Current T = {currentTemp}")
         for k in range(epochs):
-            i=random.randint(1,N-1)
-            j=random.randint(1,N-1)
+            i=random.randint(1,N-2) # we have to start and end at the hub
+            j=random.randint(1,N-2)
 
             # new_perm=adjacentSwap(current_perm,i)
             new_perm=swap(current_perm,i,j)
