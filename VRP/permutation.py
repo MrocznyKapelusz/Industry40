@@ -14,7 +14,7 @@ Vector = List[int]
 # print(new_vector)
 
 
-def generatePermutation(n:int, h:int, c:int) -> Vector:
+def generatePermutation(n:int, h:int, c:int, everyCityIsVisited:bool) -> Vector:
     """This function generates random permutation for given starting (and ending) city (aka HUB)
 
     Right now it visits either every city once and uses from 1 to maximum cars or visits not all cities and uses not all cars.
@@ -24,6 +24,7 @@ def generatePermutation(n:int, h:int, c:int) -> Vector:
         n (int): Number of cities
         h (int): Index of starting city (hub)
         c (int): Number of cars
+        everyCityVisited (bool):    Flag for visiting every city or randomly generatig # of cities
 
     Returns:
         perm (Vector): Generated permutation as a List[int]
@@ -37,7 +38,8 @@ def generatePermutation(n:int, h:int, c:int) -> Vector:
     # config params
     # everyCarIsUsed = True
     # everyCityIsVisited = True
-    everyCityIsVisited = bool(random.getrandbits(1))
+    if not everyCityIsVisited:
+        everyCityIsVisited = bool(random.getrandbits(1))
     #############################
 
     # counts distinct objects in a list

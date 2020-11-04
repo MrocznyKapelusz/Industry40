@@ -7,7 +7,7 @@ Vector = List[int]
 
 # TODO: save the list of cities to a new list?
 
-def goalFunction(data: DataStructure, permutation:Vector)->int:
+def goalFunction(data: DataStructure, permutation:Vector)->(int,str):
     """
     This function takes in a string and a Vector. The string is the name of the file
     that contains data about the cities and their distances. The Vector is a permutation 

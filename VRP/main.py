@@ -5,6 +5,8 @@ import plot_on_map as plt
 import algorithms as alg
 import sim_anneal as sa
 import matplotlib.pyplot as plt
+import tabu_search as ts
+
 
 def main():
     hub = 1   # hub's id
@@ -26,7 +28,10 @@ def main():
     # print(f"Koszt proponowanego rozwiązania: {result[0]} {result[1]}")
     # plt.draw(data, permutation, mapFileName)
 
-    """LAB2"""
+
+    # # VRP() (greedy)
+    # # cVRP() (greedy w/ cargo limit)
+    # """LAB2"""
     # results=[]
     # for hub in range(0,25):
     #     # basicGreedyPermutation = alg.greedyVRP(data, hub, c)
@@ -41,23 +46,27 @@ def main():
     #     print(f"Koszt proponowanego rozwiązania dla hub:{data.cities[hub]} : {result[0]} {result[1]}")
 
     # print(f"Optymalne położenie hub: {data.cities[results.index(min(results))]}, rozwiąwiązanie wynosi wtedy: {min(results)[0]} {min(results)[1]}")
-    
+
+
+    # simulated annealing
+    # tabu search
     """LAB3"""
-    basicGreedyPermutation = alg.greedyVRP(data, hub, c)
-    print(f"Basic perm: {basicGreedyPermutation} of cost: {gf.goalFunction(data, basicGreedyPermutation)}")
+    init_perm = perm.generatePermutation(data.n, hub, c, True)
+    initRes = gf.goalFunction(data, init_perm)
+    print(f"Initial permutation: {init_perm}.\nCost: {initRes[0]} {initRes[1]}.")
+    print('-'*25)
+    ts.tabu_search(data, hub, c, init_perm = init_perm, limit=100, cadence=7)
 
-    # ranodmPermutation=perm.generatePermutation(data.n,hub,c)
-    # print(f"Random perm: {ranodmPermutation} of cost: {gf.goalFunction(data, ranodmPermutation)}")
-    
-    results=[]
-    simAnnealPermutation=sa.sim_anneal(data,basicGreedyPermutation,25,1000,results)
-    print(f"SimAnneal perm: {simAnnealPermutation} of cost: {gf.goalFunction(data, simAnnealPermutation)}")
-
+    # basicGreedyPermutation = alg.greedyVRP(data, hub, c)
+    # print(f"Basic perm: {basicGreedyPermutation} of cost: {gf.goalFunction(data, basicGreedyPermutation)}")
+    # results=[]
+    # simAnnealPermutation=sa.sim_anneal(data,basicGreedyPermutation,100,10000,results)
+    # print(f"SimAnneal perm: {simAnnealPermutation} of cost: {gf.goalFunction(data, simAnnealPermutation)}")
     # print(len(results))
-    # print(min(results))
     # print(results[-1])
-    plt.plot(range(len(results)),results)
-    plt.show()
+    # plt.plot(range(len(simAnnealPermutation)),simAnnealPermutation)
+    # plt.show()
+
 
 
 if __name__ == "__main__":
