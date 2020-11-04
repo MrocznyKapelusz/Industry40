@@ -12,39 +12,45 @@ def sim_anneal(data:DataStructure,permutation:Vector,endTemp:int,startTemp:int,r
     N=len(permutation)
     
     # epochs=int(sqrt(N))
-    # epochs=N
-    epochs=N**2
+    epochs=N
+    # epochs=N**2
 
     currentTemp=startTemp
     current_perm=copy(permutation)
+    best_perm=copy(permutation)
+
+    
+
     it=1
 
     # results=[]
     while currentTemp > endTemp:
         # print(f"Current T = {currentTemp}")
         for k in range(epochs):
-            i=random.randint(0,N-1)
-            j=random.randint(0,N-1)
+            i=random.randint(1,N-1)
+            j=random.randint(1,N-1)
 
-            new_perm=adjacentSwap(current_perm,i)
-            # new_perm=swap(current_perm,i,j)
+            # new_perm=adjacentSwap(current_perm,i)
+            new_perm=swap(current_perm,i,j)
             # new_perm=insert(current_perm,i,j)
 
             deltaCmax=goalFunction(data,current_perm)[0]-goalFunction(data,new_perm)[0]
+            # print(deltaCmax)
             if(deltaCmax<0): # new solution is worse
                 r=random.random()
-                if(r>=exp(deltaCmax/currentTemp)):
+                if(r>=exp(-deltaCmax/currentTemp)):
                     current_perm=copy(new_perm)
             else: #new solution is better
+                best_perm=copy(new_perm)
                 current_perm=copy(new_perm)
-            results.append(goalFunction(data,current_perm)[0])
+            results.append(goalFunction(data,best_perm)[0])
         
         # currentTemp=currentTemp*0.99
-        currentTemp=currentTemp-(startTemp/(startTemp*0.1))
-        # currentTemp=currentTemp/log(it+1)
+        # currentTemp=currentTemp-(startTemp/(startTemp*10))
+        currentTemp=currentTemp/log(it+1)
         it+=1
     # return results
-    return current_perm     
+    return best_perm     
 
 
 # swap positions of two elements in a permutation

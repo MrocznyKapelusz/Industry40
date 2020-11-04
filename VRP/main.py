@@ -50,12 +50,13 @@ def main():
     # print(f"Random perm: {ranodmPermutation} of cost: {gf.goalFunction(data, ranodmPermutation)}")
     
     results=[]
-    simAnnealPermutation=sa.sim_anneal(data,basicGreedyPermutation,100,10000,results)
+    simAnnealPermutation=sa.sim_anneal(data,basicGreedyPermutation,25,1000,results)
     print(f"SimAnneal perm: {simAnnealPermutation} of cost: {gf.goalFunction(data, simAnnealPermutation)}")
 
-    print(len(results))
-    print(results[-1])
-    plt.plot(range(len(simAnnealPermutation)),simAnnealPermutation)
+    # print(len(results))
+    # print(min(results))
+    # print(results[-1])
+    plt.plot(range(len(results)),results)
     plt.show()
 
 
